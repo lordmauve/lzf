@@ -7,8 +7,8 @@ python:
   - "3.5"
   - "3.6"
   - "3.7-dev" # 3.7 development branch
-  - "pypy"
-  - "pypy3"
+#  - "pypy"  # PyPy not working at present on Travis
+#  - "pypy3"
 
 # commands to install dependencies
 install:
