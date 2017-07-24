@@ -1,8 +1,26 @@
+"""CFFI-based Python binding for LZF stream compression.
+
+The main API is ``lzf.open()``, which opens a compressed file for reading or
+writing. It can also be used to wrap an existing file-like object.
+
+To read a structure from an on-disk LZF-compressed JSON file, you could
+write::
+
+    import lzf
+    import json
+
+    with lzf.open(path, 'rb') as f:
+        print(json.load(f))
+
+"""
 import os
 import struct
 import io
 
 from _lzf import lib, ffi
+
+__version__ = '1.0'
+
 
 try:
     unicode
