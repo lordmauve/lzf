@@ -28,7 +28,7 @@ TESTDATA = os.path.join(ROOT, 'testdata', 'time-machine.txt')
 TESTDATA_SHA1 = digest(open(TESTDATA, 'rb'))
 
 # The original lzf binary
-LIBLZF_BIN = os.path.join(ROOT, 'liblzf', 'lzf')
+LIBLZF_BIN = os.path.join(ROOT, 'vendor', 'liblzf', 'lzf')
 
 
 @pytest.fixture

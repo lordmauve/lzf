@@ -1,6 +1,6 @@
 *.a
 *.o
-liblzf/lzf
+vendor/liblzf/lzf
 _lzf.c
 _lzf.so
 __pycache__
