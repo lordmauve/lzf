@@ -1,6 +1,10 @@
 lzf
 ===
 
+.. image:: https://travis-ci.org/lordmauve/lzf.svg?branch=master
+    :target: https://travis-ci.org/lordmauve/lzf
+
+
 ``lzf`` allows reading and writing files compressed with the LZF_ compression
 format.
 
