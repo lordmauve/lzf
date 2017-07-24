@@ -178,6 +178,24 @@ file_open = open
 
 
 def open(file, mode='r', encoding=None, errors=None):
+    """Open a LZF stream for reading or writing.
+
+    ``file`` may be a path to an on-disk file, or a file-like object open for
+    reading or writing (whatever you pass to ``mode``).
+
+    ``mode`` must be ``r`` or ``w`` to indicate reading or writing,
+    optionally with ``b`` or ``t`` to indicate binary or text-mode IO. If the
+    mode is text (the default), then ``U`` is also accepted to turn on
+    universal newline mode.
+
+    ``encoding`` and ``errors`` are as for the built-in ``open()``
+    function.
+
+    Note that ``lzf.open()`` takes the Python 3 model for text IO, even on
+    Python 2. Unless ``mode`` contains ``'b'``, then the returned file-like
+    object will read or write Unicode strings.
+
+    """
     op = mode[0]
     modeflags = set(mode[1:])
     valid_mode = (
