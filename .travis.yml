@@ -1,17 +1,19 @@
 # Config file for automatic testing at travis-ci.org
 language: python
-python: 3.5
+python:
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "3.7-dev" # 3.7 development branch
+  - "pypy"
+  - "pypy3"
 
-env:
-  - TOXENV=py36
-  - TOXENV=py35
-  - TOXENV=py34
-  - TOXENV=py33
-  - TOXENV=py27
-  - TOXENV=pypy
+# commands to install dependencies
+install:
+  - "pip install -r requirements.txt -r test-requirements.txt"
+  - "python setup.py install"
 
-# command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: pip install -U tox
-
-# command to run tests, e.g. python setup.py test
-script: tox -e ${TOXENV}
+# command to run tests
+script: pytest
