@@ -1,0 +1,8 @@
+*.a
+*.o
+liblzf/lzf
+_lzf.c
+_lzf.so
+__pycache__
+*.pyc
+*.swp
