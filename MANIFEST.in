@@ -1,0 +1,2 @@
+include lzf_build.py
+recursive-include vendor/liblzf *.h *.c

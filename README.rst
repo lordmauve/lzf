@@ -19,7 +19,7 @@ API
 
 This package provides reading and writing LZF data as Python file like objects.
 
-.. function:: lzf.open(file, mode='r', encoding=None, errors=None)
+``lzf.open(file, mode='r', encoding=None, errors=None)``
 
     Open a LZF stream for reading or writing.
 

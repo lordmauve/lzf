@@ -3,11 +3,11 @@ ffibuilder = FFI()
 
 ffibuilder.set_source("_lzf",
    r"""
-        #include <lzf.h>
+    #include <lzf.h>
+    #include <lzf_c.c>
+    #include <lzf_d.c>
     """,
-    libraries=['lzf'],   # or a list of libraries to link with
-    include_dirs=['liblzf'],
-    library_dirs=['liblzf'],
+    include_dirs=['vendor/liblzf'],
     # (more arguments like setup.py's Extension class:
     # include_dirs=[..], extra_objects=[..], and so on)
 )

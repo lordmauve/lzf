@@ -1,9 +1,13 @@
-import __builtin__
 import os
 import struct
 import io
 
 from _lzf import lib, ffi
+
+try:
+    unicode
+except NameError:
+    unicode = str
 
 
 HDR_U = struct.Struct('>H')
@@ -37,14 +41,11 @@ def _iter_decompress(fileobj):
     while True:
         pos = tell()
         hdr = fileobj.read(3)
-        print(repr(hdr))
         if hdr == b'ZV\0':
             us, = HDR_U.unpack(read(HDR_U.size))
-            print(us)
             yield fileobj.read(us)
         elif hdr == b'ZV\1':
             cs, us = HDR_C.unpack(read(HDR_C.size))
-            print(us, cs)
             inbuf = fileobj.read(cs)
             res = lib.lzf_decompress(
                 inbuf, cs,
@@ -130,9 +131,9 @@ class Writer(io.RawIOBase):
         self._buf = bytearray()
         self._dest = bytearray(LZF_MAX_COMPRESSED_SIZE(MAX_CHUNK))
         self._hdr_c = bytearray(HDR_C.size + 3)
-        self._hdr_c[:3] = 'ZV\1'
+        self._hdr_c[:3] = b'ZV\1'
         self._hdr_u = bytearray(HDR_U.size + 3)
-        self._hdr_u[:3] = 'ZV\0'
+        self._hdr_u[:3] = b'ZV\0'
 
     def readable(self):
         return False
@@ -238,7 +239,8 @@ def copy_from(inf, outf):
         outf.write(chunk)
 
 
-if __name__ == '__main__':
+def cli():
+    """Run as a command-line compression tool."""
     from argparse import ArgumentParser
 
     parser = ArgumentParser()
@@ -279,3 +281,7 @@ if __name__ == '__main__':
 
         with lzf_open(in_file, 'rb') as inf, file_open(out_file, 'wb') as outf:
             copy_from(inf, outf)
+
+
+if __name__ == '__main__':
+    cli()

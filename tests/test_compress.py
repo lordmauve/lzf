@@ -28,5 +28,5 @@ def test_compress_decompress():
     compressed = out.getvalue()
     print(repr(compressed))
 
-    decompressed = lzf.open(BytesIO(compressed)).read()
+    decompressed = lzf.open(BytesIO(compressed), 'rb').read()
     assert decompressed == b'hello world'
